@@ -1,7 +1,18 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ---- debug mode in windows
-;; ex: debug the .emacs file
-;; C:\bin> emacs .emacs --debug-init
+;;  ~/.emacs
+;;
+;;
+;;  DEPENDENCIES:
+;;    ~/.emacs.d/custom.el
+;;    ~/.emacs.d/my-packages.el
+;;    ~/.emacs.d/my-modes.el
+;;    ~/.emacs.d/my-modeline.el
+;;
+;;
+;;  USE:  Place .emacs in your home directory (~/)
+;;        Place dependencies in ~/.emacs.d/
+;;
+;;  TODOs:
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -10,24 +21,26 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Keep my custom-set variables separate from configuration file.
 ;;
-;; packages, archives, reqd packages
-;; important stuff gets loaded first
+;;
+;; packages, archives, reqd packages, i.e. important stuff gets loaded first
 (load "~/.emacs.d/my-packages.el")
 
-;; mode line customization takes place last - so run theme file first
+;;
 (setf custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 
+;;
+(load "~/.emacs.d/my-modes.el")
+
+;; mode line customization takes place last
 (load "~/.emacs.d/my-modeline.el")
 
-;; forgetting something??
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; since middle mouse button doesn't work in terminator, try something like
-;(add-hook 'lisp-mode-hook
-;          (lambda () (local-set-key (kbd "M-<up>") 'foo)))
+;; NB
+;; ---- debug mode in windows and linux, e.g. debug the .emacs file
+;; C:\bin> emacs .emacs --debug-init
+;; $ emacs .emacs --debug-init
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
