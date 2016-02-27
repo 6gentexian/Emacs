@@ -96,8 +96,6 @@
 
 
 ;; TO BE USED WHEN CONFIGURING NEW MACHINE
-;;
-;; (require 'cl-lib)
 
 ;; ;; method to check if all packages are installed
 ;; (defun packages-installed-p ()
