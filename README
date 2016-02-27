@@ -4,11 +4,11 @@
 #
 #
 #  This suite of scripts provides a basic configuration for emacs v24 on
-#    Arch linux.  The root emacs file, ~/.emacs calls several additional files
-#    that include themes, formatting, hotkeys, the repository info for installs
+#    Arch linux.  The root emacs file, ~/.emacs calls additional files that
+#    provide themes, formatting, hotkeys, the repository info for installs
 #    and upgrades, various hooks for different editing modes and a file that
-#    has provides nice modeline formatting (I can't find where I got the original
-#    file).
+#    provides nice modeline formatting, based on:
+#    http://amitp.blogspot.sg/2011/08/emacs-custom-mode-line.html
 #
 #
 #  FILES:

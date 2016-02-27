@@ -1,8 +1,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;Mode line setup
+;; ~/.emacs.d/my-modeline.el
 ;;
 ;;
-;;
+;; Based off the brilliant script:
+;; http://amitp.blogspot.sg/2011/08/emacs-custom-mode-line.html
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq-default
  mode-line-format

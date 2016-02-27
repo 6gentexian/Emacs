@@ -1,31 +1,60 @@
-## Synopsis
+# Summary
 
-At the top of the file there should be a short introduction and/ or overview that explains **what** the project is. This description should match descriptions added for package managers (Gemspec, package.json, etc.)
+  This suite of scripts provides a basic configuration for emacs v24 on
+  Arch linux.  The root emacs file, `~/.emacs` calls additional files that
+  provide themes, formatting, hotkeys, the repository info for installs
+  and upgrades, various hooks for different editing modes and a file that
+  provides nice modeline formatting, based on:
+  [http://amitp.blogspot.sg/2011/08/emacs-custom-mode-line.html]
 
-## Code Example
+# Files
 
-Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
+*    .emacs
+**        custom.el
+**        my-packages.el
+**        my-modes.el
+**        my-modeline.el
 
-## Motivation
+# Dependencies
 
-A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
+Arch - emacs 24.5-2
 
-## Installation
+# Use
 
-Provide code examples and explanations of how to get the project.
+Place .emacs in your home directory (~/)
+Place dependencies in separate folder `~/.emacs.d/`
 
-## API Reference
 
-Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
+# NB   
 
-## Tests
+In order to test changes in the various emacs scripts, place them in
+a dev folder and run the following command, e.g. when working on
+the modeline script:
+```
+ $ emacs -q -l path/to/test/init/script scriptname.el
+```		
+    where
+```
+      -q            				// runs emacs with no init script
+      -l path/to/test/init/script 	// links emacs to the testing init script
+      scriptname.el 				// the test file you're editing
+```
+For example,
+```
+ $ emacs -q -l ~/DEV/EMACS/.emacs my-modeline.el
+```
+will edit my new modeline script using the .emacs file in my DEV folder
 
-Describe and show how to run the tests with code examples.
 
-## Contributors
+If something goes wonky with one of the files or future customizations,
+ use the debug mode to debug the (e.g. .emacs) file
+```
+ $ emacs ~/.emacs --debug-init
+```
 
-Let people know how they can dive into the project, include important links to things like issue trackers, irc, twitter accounts if applicable.
+# TODO
 
-## License
 
-A short snippet describing the license (MIT, Apache, etc.)
+# License
+
+
