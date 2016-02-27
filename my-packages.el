@@ -2,6 +2,10 @@
 ;; ~/.emacs.d/my-packages.el
 ;;
 ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'cl-lib)
 ;; If you need Common Lisp extensions, use the cl-lib library rather than the old
 ;;  cl library. The latter does not use a clean namespace (i.e., its definitions
@@ -89,10 +93,8 @@
 ;;			    (not (package-built-in-p x))
 ;;			    (package-installed-p x)))
 ;;		  (mapcar 'car package-archive-contents))))
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; TO BE USED WHEN CONFIGURING NEW MACHINE
 ;;
 ;; (require 'cl-lib)
