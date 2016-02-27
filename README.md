@@ -8,16 +8,16 @@
 
 ## Files
 * .emacs
-** custom.el
-** my-packages.el
-** my-modes.el
-** my-modeline.el
+ * custom.el
+ * my-packages.el
+ * my-modes.el
+ * my-modeline.el
 
 ## Dependencies
 emacs 24.5-2
 
 ## Use
-Place .emacs in your home directory (~/)
+Place .emacs in your home directory `~/`
 
 Place dependencies in separate folder `~/.emacs.d/`
 
@@ -43,7 +43,11 @@ will edit the new modeline script using the .emacs file in the DEV folder
 If something goes wonky with one of the files or future customizations,
  use the debug mode to debug the (e.g. .emacs) file
 ```
- $ emacs ~/.emacs --debug-init
+ $ emacs ~/my-modeline.el --debug-init
+```
+or
+```
+ $ emacs -q -l ~/DEV/EMACS/.emacs my-modeline.el --debug-init
 ```
 
 ## TODO
