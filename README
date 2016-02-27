@@ -25,10 +25,25 @@
 #  USE:  Place .emacs in your home directory (~/)
 #        Place dependencies in ~/.emacs.d/
 #
-#  NB:  If something goes wonky with one of the files or future customizations,
-#         use the debug mode to debug the (e.g. .emacs) file
+#  NB:   In order to test changes in the various emacs scripts, place them in
+#        a dev folder and run the following command, e.g. when working on
+#        the modeline script:
+#        $ emacs -q -l path/to/test/init/script scriptname.el
 #
-#       $ emacs ~/.emacs --debug-init
+#        where
+#          -q            <- runs emacs with no init script
+#          -l path/to/test/init/script <- links emacs to the testing init script
+#          scriptname.el <- the test file you're editing
+#
+#        For example,
+#        $ emacs -q -l ~/DEV/EMACS/.emacs my-modeline.el
+#        will edit my new modeline script using the .emacs file in my DEV folder
+#
+#
+#        If something goes wonky with one of the files or future customizations,
+#        use the debug mode to debug the (e.g. .emacs) file
+#
+#        $ emacs ~/.emacs --debug-init
 #
 #
 #  TODOs:
