@@ -1,4 +1,15 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; TODO: Clean up (add-hook 'before-save-hook 'whitespace-cleanup)
+;;       so that copy/paste doeesn't get wonky with the crazy indentations
+;;
+;;       Get a handle on indentations
+;;       - spaces for python mode?
+;;       - indent == 2 spaces for html?
+;;       tabs are tabs for everything else?
+;;
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; NEEDED TO GET ENABLE MOUSE TO SET ACTIVE REGION
 (require 'mouse)
 (xterm-mouse-mode t)
@@ -9,6 +20,7 @@
 (setq select-active-regions nil)
 (setq mouse-drag-copy-region t)
 (global-set-key [mouse-2] 'mouse-yank-at-click)
+
 
 ;; CAN NOW PASTE TO /COPY FROM WINDOWS
 (setq x-select-enable-clipboard t)
@@ -34,6 +46,7 @@
    (setq interprogram-paste-function 'xsel-paste-function)
 ))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; This makes sure that brace structures (), [], {}, etc. are closed as soon as
@@ -64,6 +77,7 @@
 (setq display-time-day-and-date t)
 (display-time)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Emacs usually has a splash screen on startup.
@@ -153,6 +167,7 @@
 (global-set-key "\M-;" 'comment-dwim-line)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (defconst win32
   (eq system-type 'windows-nt)
   "Are we running on Win32 system")
@@ -200,26 +215,12 @@
     )
     )
   (set-face-attribute 'default nil :height 100)
-;;  (cd "/home/edward/Dropbox/")
+  (cd "~/")
 )
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;(load-theme 'zenburn t)
-;;;;(load-theme 'ample-zen t)
-;;;;(load-theme 'zen-and-art t)
-;;;;(load-theme 'adwaita t)
-;;;;(load-theme 'deeper-blue t)
-;;;;(load-theme 'dichromacy t)
-;;;;(load-theme 'leuven t)
-;;;;(load-theme 'light-blue t)
-;;;;(load-theme 'manoj-dark t)
-;;;;(load-theme 'misterioso t)
-;;;;(load-theme 'wheatgrass t)
-;;;;(load-theme 'whiteboard t)
-;;(load-theme 'wombat t)
-;(load-theme 'hc-zenburn t)
-;(load-theme 'tsdh-dark t)
 (load-theme 'tango-dark t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -234,13 +235,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; make backup to a designated dir, mirroring the full path
 (setq
- backup-by-copying t                     ; don't clobber symlinks
- backup-directory-alist
- '(("." . "~/.emacs.d/emacs-backup"))    ; don't litter my fs tree
- delete-old-versions t
- kept-new-versions 6
- kept-old-versions 4
- version-control t)                      ; use versioned backups
+  backup-by-copying t                     ; don't clobber symlinks
+  backup-directory-alist
+  '(("." . "~/.emacs.d/emacs-backup"))    ; don't litter my fs tree
+  delete-old-versions t
+  kept-new-versions 6
+  kept-old-versions 4
+  version-control t)                      ; use versioned backups
 
 ;; (defun my-backup-file-name (fpath)
 ;;     "Return a new file path of a given file path.
@@ -258,7 +259,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(setq save-place-file "~/.emacs.d/saveplace") ;; keep my ~/ clean
+;; Open file at the last place where it was when you previously saved the file
+(setq save-place-file "~/.emacs.d/saveplace")
 (setq-default save-place t)                   ;; activate it for all buffers
 (require 'saveplace)                          ;; get the package
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -357,27 +359,6 @@
 ;;  ***************  NEEDED ?????  *************** ;;
 ;;  ***************  NEEDED ?????  *************** ;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; NO LONGER NEEDED FOR SOME REASON - MODELINE SPECS TAKE OVER??
-;; Line numbers are good.  Getting column numbering as well is better
-;; The mode-line is made more useful by showing the progress through the file
-;; (column-number-mode t);; (setq  size-indication-mode t);; (size-indication-mode t)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 ;; Turn on auto complete.
 ;(require 'auto-complete-config)
 ;(ac-config-default)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Marking text
-;; I like to see what's selected in the buffer.
-;; This turns on visual feedback on selections.
-;(transient-mark-mode t)
-;; Emacs also has it's own clipboard and doesn't respond to the system clipboard
-;; by default, so tell Emacs that we're all friends and can get along
-;; Hence, enable emacs to copy to the clipboard
-;(setq x-select-enable-clipboard t)
-;;don't know when/if this will ne needed
-;; interprogram-paste-function 'x-cut-buffer-or-selection-value
-;;(setq x-cut-buffer-or-selection-value t)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
