@@ -1,4 +1,4 @@
-# Summary
+## Summary
   This suite of scripts provides a basic configuration for emacs v24 on
   Arch linux.  The root emacs file, `~/.emacs` calls additional files that
   provide themes, formatting, hotkeys, the repository info for installs
@@ -6,20 +6,22 @@
   provides nice modeline formatting, based on:
   [http://amitp.blogspot.sg/2011/08/emacs-custom-mode-line.html]
 
-# Files
-*.emacs
-**custom.el
-**my-packages.el
-**my-modes.el
-**my-modeline.el
+## Files
+* .emacs
+** custom.el
+** my-packages.el
+** my-modes.el
+** my-modeline.el
 
-# Dependencies		emacs 24.5-2
+## Dependencies
+emacs 24.5-2
 
-# Use
+## Use
 Place .emacs in your home directory (~/)
+
 Place dependencies in separate folder `~/.emacs.d/`
 
-# NB   
+## NB   
 In order to test changes in the various emacs scripts, place them in
 a dev folder and run the following command, e.g. when working on
 the modeline script:
@@ -44,9 +46,9 @@ If something goes wonky with one of the files or future customizations,
  $ emacs ~/.emacs --debug-init
 ```
 
-# TODO
+## TODO
 
 
-# License
+## License
 
 
