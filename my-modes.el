@@ -61,6 +61,10 @@
 (add-to-list 'auto-mode-alist '("\\.pyw\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.pyc\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.py\\'"  . python-mode))
+(add-to-list 'auto-mode-alist '("\\.wsgi$"  . python-mode))
+
+;; (setq python-indent 4)
+;; (add-hook 'python-mode-hook 'color-identifiers-mode))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -75,6 +79,12 @@
 (add-hook 'js-mode-hook 'js-custom)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; ;; Red Warnings
+;; ;; Various keywords (in comments) are now flagged in a Red Error font:
+;; (add-hook 'prog-common-hook
+;;	  (lambda ()
+;;	    (font-lock-add-keywords nil
+;;    '(("\\<\\(FIX\\|FIXME\\|TODO\\|BUG\\|HACK\\):" 1 font-lock-warning-face t)))))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;(org-babel-do-load-languages
 ;; 'org-babel-load-languages

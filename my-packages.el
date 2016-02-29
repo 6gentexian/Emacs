@@ -4,31 +4,18 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(require 'cl-lib)
-;; If you need Common Lisp extensions, use the cl-lib library rather than the old
-;;  cl library. The latter does not use a clean namespace (i.e., its definitions
-;;  do not start with a ‘cl-’ prefix). If your package loads cl at run time, that
-;;  could cause name clashes for users who don't use that package.
-;; There is no problem with using the cl package at compile time, with
-;;  (eval-when-compile (require 'cl)). That's sufficient for using the macros in
-;;  the cl package, because the compiler expands them before generating the
-;;  byte-code. It is still better to use the more modern cl-lib, though.
-;; So please require cl-lib, not cl !!!
-;; source: http://www.emacswiki.org/emacs/CommonLispForEmacs
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; needed to read packages from 'elpa', ~/.emacs.d/elpa
+;; Needed to read packages from local package repo, 'elpa':   ~/.emacs.d/elpa
 (require 'package)
 
-
-;; (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+(add-to-list 'package-archives
+	     '("gnu" . "https://elpa.gnu.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+;;(add-to-list 'package-archives
+;;	     '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 (add-to-list 'package-archives
 	     '("marmalade" . "http://marmalade-repo.org/packages/") t)
-(add-to-list 'package-archives
-	     '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 
 (package-initialize)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -40,8 +27,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; TO BE USED WHEN CONFIGURING NEW MACHINE
 ;;
-;; If at some point, I have a bunch of non-built-in packages to work with
-;; (defvar ebg-packages
+;; I have a bunch of non-built-in packages to work with --
+;; (defvar required-packages
 ;;   '(
 ;;     auctex
 ;;     ess
@@ -64,45 +51,29 @@
 ;;     epc
 ;;     f
 ;;     flyspell-popup
-;;     jedi
-;;     jedi-core
+;;     js2-mode
+;;     ac-js2
 ;;     julia-mode
 ;;     log4e
 ;;     math-symbol-lists
+;;     org-mode
 ;;     org-ac
 ;;     popup
 ;;     rw-ispell
 ;;     s
+;;     web-mode
 ;;     web-completion-data
 ;;     yasnippet
 ;;     yaxception
 ;;   )
+;;  "List of packages installed at launch.")
 ;; )
-;; (dolist (pkg ebg-packages)
-;;   (when (and (not (package-installed-p pkg))
-;;	   (assoc pkg package-archive-contents))
-;;     (package-install pkg)))
-
-;; (defun package-list-unaccounted-packages ()
-;; ;;  "Like `package-list-packages', but shows only the packages that
-;; ;;  are installed and are not in `ebg-packages'.  Useful for
-;; ;;  cleaning out unwanted packages."
-;;   (interactive)
-;;   (package-show-package-list
-;;    (remove-if-not (lambda (x) (and (not (memq x ebg-packages))
-;;			    (not (package-built-in-p x))
-;;			    (package-installed-p x)))
-;;		  (mapcar 'car package-archive-contents))))
-
-
-;; TO BE USED WHEN CONFIGURING NEW MACHINE
 
 ;; ;; method to check if all packages are installed
 ;; (defun packages-installed-p ()
-;;   (loop for pkg in ebg-packages
+;;   (loop for pkg in required-packages
 ;;         when (not (package-installed-p pkg)) do (return nil)
 ;;         finally (return t)))
-
 ;; ;; if all packages are not installed, check one by one and install the missing ones.
 ;; (unless (packages-installed-p)
 ;;   ;; check for new packages (package versions)
@@ -110,7 +81,25 @@
 ;;   (package-refresh-contents)
 ;;   (message "%s" " done.")
 ;;   ;; install the missing packages
-;;   (dolist (pkg ebg-packages)
+;;   (dolist (pkg required-packages)
 ;;     (when (not (package-installed-p pkg))
 ;;       (package-install pkg))))
+
+;; (defun package-list-unaccounted-packages ()
+;; ;;  "Like `package-list-packages', but shows only the packages that
+;; ;;  are installed and are not in `required-packages'.  Useful for
+;; ;;  cleaning out unwanted packages."
+;;   (interactive)
+;;   (package-show-package-list
+;;    (remove-if-not (lambda (x) (and (not (memq x required-packages))
+;;			    (not (package-built-in-p x))
+;;			    (package-installed-p x)))
+;;		  (mapcar 'car package-archive-contents))))
+
+;; (provide 'my-packages)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (dolist (pkg required-packages)
+;;   (when (and (not (package-installed-p pkg))
+;;	   (assoc pkg package-archive-contents))
+;;     (package-install pkg)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

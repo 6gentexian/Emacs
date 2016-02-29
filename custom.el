@@ -1,6 +1,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; TODO: Clean up (add-hook 'before-save-hook 'whitespace-cleanup)
+;; TODO: Confirm whitespace cleanup)
 ;;       so that copy/paste doeesn't get wonky with the crazy indentations
 ;;
 ;;       Get a handle on indentations
@@ -14,6 +14,10 @@
 (require 'mouse)
 (xterm-mouse-mode t)
 
+
+;; Turn on auto complete.
+(require 'auto-complete-config)
+(ac-config-default)
 
 ;; NOW NEEDED (EMACS >=24) TO ENABLE MOUSE MIDDLE BUTTON TO COPY/PASTE IN AND OUT
 ;;  OF EMACS
@@ -97,7 +101,7 @@
 ;; Column line where text should be wrapped
 (setq  fill-column 80)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
+;; Switch buffers w/o having to give an 'OK'
 (defun revert-buffer-no-confirm ()
     "Revert buffer without confirmation."
     (interactive)
@@ -229,7 +233,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; CLEAN UP WHITE SPACES FROM COPY/PASTE ETC
 (add-hook 'before-save-hook 'whitespace-cleanup)
-
+;; Belt and suspenders
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(setq-default show-trailing-whitespace t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
@@ -294,9 +300,14 @@
 ;; (global-set-key (kbd "C-c b") 'cleanup-region)
 ;; (global-set-key (kbd "C-c b") 'cleanup-buffer)
 
-;(setq-default show-trailing-whitespace t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; ;; I have learned to distrust tabs in my source code,
+;; ;; so let’s make sure that we only have spaces.
+;; (setq-default indent-tabs-mode nil)
+;; (setq tab-width 2)
+;; ;;Make tab key do indent first then completion.
+;; (setq-default tab-always-indent 'complete)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; (defun xah-clean-whitespace (p1 p2)
