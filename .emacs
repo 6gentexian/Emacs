@@ -25,13 +25,14 @@
 ;;(load "~/.emacs.d/my-packages.el")
 (load "/home/edward/DEV/EMACS/my-packages.el")
 
+;;
+;; (load "~/.emacs.d/my-modes.el")
+(load "/home/edward/DEV/EMACS/my-modes.el")
+
 ;;(setf custom-file "~/.emacs.d/custom.el")
 (setf custom-file "/home/edward/DEV/EMACS/custom.el")
 (load custom-file)
 
-;;
-;; (load "~/.emacs.d/my-modes.el")
-;(load "/home/edward/DEV/EMACS/my-modes.el")
 ;; mode line customization takes place last
 ;; (load "~/.emacs.d/my-modeline.el")
 (load "/home/edward/DEV/EMACS/my-modeline.el")

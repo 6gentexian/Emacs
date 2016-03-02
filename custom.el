@@ -172,6 +172,17 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Identify $HOSTNAME
+(setf hostname
+      (with-temp-buffer
+	(call-process "hostname" nil t)
+	(let ((hostname* (buffer-string)))
+	  (while (string-match "[\r\n\t ]+" hostname*)
+	    (setq hostname* (replace-match "" t t hostname*)))
+	  hostname*)))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defconst win32
   (eq system-type 'windows-nt)
   "Are we running on Win32 system")
@@ -227,6 +238,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; /usr/share/emacs/24.5/etc/themes
 (load-theme 'tango-dark t)
+
+(setf visible-bell t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
