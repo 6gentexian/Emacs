@@ -58,6 +58,7 @@
     yasnippet
     yaxception
     ac-R
+    auto-complete
     auto-complete-auctex
     ac-html
     ac-html-csswatcher

@@ -96,8 +96,10 @@
 ;; 'org-babel-load-languages
 ;; '((R . t)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Turn on auto complete.
+(require 'auto-complete-config)
+(ac-config-default)
 
-;(require 'auto-complete)
 ;(global-auto-complete-mode)
 ;(eval-after-load "auto-complete"
 ;  '(add-to-list 'ac-modes '(geiser-repl-mode geiser-mode) t))
