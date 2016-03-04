@@ -14,6 +14,14 @@
 (require 'mouse)
 (xterm-mouse-mode t)
 
+;(defvar curent-hostname
+;  (or (getenv "HOSTNAME") (getenv "COMPUTERNAME") "unknown")
+;  "hostname of this machine")
+
+;(setq current-hostname (getenv "HOSTNAME"))
+;(display-message "$HOSTNAME depth is %s."
+;	 (current-hostname))
+
 
 ;; Turn on auto complete.
 (require 'auto-complete-config)
@@ -150,8 +158,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun display-startup-echo-area-message ()
-  (message ".emacs loaded successfully."))
+;(defun display-startup-echo-area-message ()
+;  (message ".emacs loaded successfully."))
+;;(message "HOSTNAME depth is %s."
+;;	 (current-hostname)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 

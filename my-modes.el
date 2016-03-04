@@ -104,29 +104,29 @@
 ;(eval-after-load "auto-complete"
 ;  '(add-to-list 'ac-modes '(geiser-repl-mode geiser-mode) t))
 
-(require 'flycheck)
-;; (global-flycheck-mode t)
-;; (add-hook 'after-init-hook #'global-flycheck-mode)
+;; (require 'flycheck)
+;; ;; (global-flycheck-mode t)
+;; ;; (add-hook 'after-init-hook #'global-flycheck-mode)
 
-(add-hook 'org-mode-hook 'flyspell-mode)
-(add-hook 'markdown-mode-hook 'flyspell-mode)
+;; (add-hook 'org-mode-hook 'flyspell-mode)
+;; (add-hook 'markdown-mode-hook 'flyspell-mode)
 
-(add-hook 'latex-mode-hook 'flyspell-mode)
-(add-hook 'web-mode-hook 'flyspell-mode)
+;; (add-hook 'latex-mode-hook 'flyspell-mode)
+;; (add-hook 'web-mode-hook 'flyspell-mode)
 
-(add-hook 'c++-mode-hook 'flyspell-mode)
-(add-hook 'c-mode-hook 'flyspell-mode)
+;; (add-hook 'c++-mode-hook 'flyspell-mode)
+;; (add-hook 'c-mode-hook 'flyspell-mode)
 
-(add-hook 'emacs-lisp-mode-hook 'flyspell-mode -1)
-(add-hook 'python-mode-hook 'flyspell-mode)
+;; (add-hook 'emacs-lisp-mode-hook 'flyspell-mode -1)
+;; (add-hook 'python-mode-hook 'flyspell-mode)
 
-(add-hook 'sh-mode-hook 'flyspell-mode)
-(add-hook 'org-mode-hook 'flyspell-mode)
+;; (add-hook 'sh-mode-hook 'flyspell-mode)
+;; (add-hook 'org-mode-hook 'flyspell-mode)
 
-(dolist (hook '(text-mode-hook))
-  (add-hook hook (lambda () (flyspell-mode 1))))
-(dolist (hook '(change-log-mode-hook log-edit-mode-hook))
-  (add-hook hook (lambda () (flyspell-mode -1))))
+;; (dolist (hook '(text-mode-hook))
+;;   (add-hook hook (lambda () (flyspell-mode 1))))
+;; (dolist (hook '(change-log-mode-hook log-edit-mode-hook))
+;;   (add-hook hook (lambda () (flyspell-mode -1))))
 
 
 ;; (defun TeX-input-method () (set-input-method 'TeX))
