@@ -22,9 +22,23 @@
 
 (setq inhibit-startup-message t)
 (setq inhibit-splash-screen t)
+(setq inhibit-startup-echo-area-message t)
 
-;(defun display-startup-echo-area-message ()
-;  (message ".emacs loaded successfully."))
+;(setq current-hostname
+ ;defvar current-hostname
+;  '(:eval(getenv "HOSTNAME")))
+;  "hostname of this machine")     
+(setq hostname
+    (replace-regexp-in-string "\\`[ \t\n]*" ""
+	(replace-regexp-in-string "[ \t\n]*\\'" ""
+           (shell-command-to-string "hostname"))))
+
+
+
+(defun display-startup-echo-area-message ()
+;  (message ".emacs loaded successfully.")) ; %s" (current_hostname)))
+(message "%s" hostname))  ; ".emacs loaded"))
+
 
 ;(defvar current-hostname
 ;  (or (getenv "HOSTNAME") (getenv "COMPUTERNAME") "unknown")
