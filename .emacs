@@ -19,14 +19,23 @@
 (setf user-full-name "Edward Glidewell")
 (setf user-mail-address "edwardglidewell@gmail.com")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(setq  inhibit-startup-message t
-       inhibit-splash-screen t)
 
-;(eval-after-load "startup" '(fset 'display-startup-echo-area-message (lambda ())))
+(setq inhibit-startup-message t)
+(setq inhibit-splash-screen t)
+
 ;(defun display-startup-echo-area-message ()
 ;  (message ".emacs loaded successfully."))
-;(defun display-startup-echo-area-message ()
-;    (message ""))
+
+;(defvar current-hostname
+;  (or (getenv "HOSTNAME") (getenv "COMPUTERNAME") "unknown")
+;  "hostname of this machine")
+
+;(setq current-hostname (getenv "HOSTNAME"))
+;  (display-message "$HOSTNAME depth is %s."
+;  (current-hostname))    
+
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load req'd packages, package repositories i.e. load important stuff first
 ;;(load "~/.emacs.d/my-packages.el")
@@ -48,9 +57,7 @@
 ;(load "/home/edward/DEV/EMACS/my-modeline.el")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;(defun display-startup-echo-area-message ()
-;  (message ".emacs loaded successfully."))
-;(eval-after-load "startup" '(fset 'display-startup-echo-area-message (lambda ())))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; NB
 ;; ---- debug mode in windows and linux, e.g. debug the .emacs file
