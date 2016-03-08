@@ -1,13 +1,40 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; my-modes.el
+;;
+;;
 ;; Info corresponding to setting and configuring modes
+;;
+;; Is it me, or are some of these setting chronically wonky??
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Set autopair and auto-comlpete globally
+(require 'autopair)
+(autopair-global-mode)
+
+
+
 ;; Auctex
 ;; Invoke the AUCTeX package (LaTeX support)
 (require 'tex-site)
 
+;; To compile documents to PDF (via PDFLaTeX) by default add the following to your ~/.emacs.
+(setq TeX-PDF-mode t)
+
+;; If it doesn’t work, try 
+;; (require 'tex)
+;; (TeX-global-PDF-mode t)
+
+;; By default, AUCTeX shares its abbreviations with the major mode text-mode.
+;; This means that abbreviations saved with C-x a l (add-mode-abbrev) are
+;; saved in the table text-mode-abbrev-table and become available in all buffers
+;; using text-mode. This may not be the expected behavior.
+;; Here is how to define abbreviations that work in auctex modes only,
+;; without interfering with the standard text-mode. In the InitFile, put:
+(define-abbrev-table 'TeX-mode-abbrev-table (make-abbrev-table))
+(add-hook 'TeX-mode-hook (lambda ()
+   (setq abbrev-mode t)
+   (setq local-abbrev-table TeX-mode-abbrev-table)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -37,31 +64,47 @@
 	 ("\\.h\\'" . c-mode)
 	 ;; emacs file ftw
 	 ("\\.el\\'" . emacs-lisp-mode)
-	 ("\\.R\\'" . sh-mode)
-	 ("\\.r\\'" . sh-mode)
-	 ("\\.txt$" . org-mode)
+	 ("\\.R\\'" . R-mode)
+	 ("\\.r\\'" . R-mode)
+	 ("\\.txt$" . text-mode)
 	 ("\\.bib$" . org-mode)
 	 )
        auto-mode-alist))
 
+;; ;; Don't use TABS for indentations.
+;; (setq indent-tabs-mode nil)
+;; (setq tab-width 4)
+;; (setq tab-stop-list (number-sequence 4 200 4))
 
-;; (add-hook 'text-mode-hook
-;;	  '(lambda ()
-;;	     (setq indent-tabs-mode nil)
-;;	     (setq tab-width 4)
-;;	     (setq indent-line-function (quote insert-tab))))
+(add-hook 'text-mode-hook
+  '(lambda ()
+     (setq tab-width 4)
+     (setq tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80))
+     (setq indent-tabs-mode nil)))
 
-;; ;;Handling Uncommon File Extensions
-;; (add-to-list 'auto-mode-alist '("\\.ext\\'" . text-mode))
+
+     
+     ;; (setq tab-width 4)
+     ;; (setq tab-stop-list (number-sequence 4 200 4)) 
+     ;; (setq indent-tabs-mode nil)))
+
+;;Handling Uncommon File Extensions
+(add-to-list 'auto-mode-alist '("\\.ext\\'" . text-mode))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;; Python mode settings
 (require 'python-mode)
 
-;(setq python-indent 4)
-;(add-hook 'python-mode-hook 'color-identifiers-mode))
-(add-hook 'python-mode-hook 'autopair-mode)
+(add-to-list 'interpreter-mode-alist '("python" . python-mode))
+
+(setq interpreter-mode-alist
+    (cons '("python" . python-mode)
+      interpreter-mode-alist)
+    python-mode-hook
+      '(lambda () (progn
+	    (set-variable 'py-indent-offset 4)
+	    (set-variable 'indent-tabs-mode nil))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-to-list 'auto-mode-alist '("\\.pyx\\'" . python-mode))
@@ -97,8 +140,8 @@
 ;; '((R . t)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Turn on auto complete.
-(require 'auto-complete-config)
-(ac-config-default)
+;; (require 'auto-complete-config)
+;; (ac-config-default)
 
 ;(global-auto-complete-mode)
 ;(eval-after-load "auto-complete"
