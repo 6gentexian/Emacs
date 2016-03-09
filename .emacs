@@ -33,19 +33,15 @@
     (message  ".emacs loaded on %s " hostname))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Define LoadPath
+;; Define LoadPath -- get things setup to download and install packages
 (add-to-list 'load-path "~/DEV/EMACS/")
-;;(add-to-list 'load-path "~/.emacs.d/lisp/")
+(add-to-list 'load-path "~/DEV/EMACS/elpa/")
 
 ;; Load req'd packages, package repositories i.e. load important stuff first
+;(load "/home/edward/DEV/EMACS/my-packages.el")
+(require 'my-packages)
 
-(load "/home/edward/DEV/EMACS/my-packages.el")
 ;(load "/home/edward/DEV/EMACS/my-modes.el")
-;(load "/home/edward/DEV/EMACS/my-modeline.el")
-
-;(require 'my-packages)
-
-
 ;; (load "~/.emacs.d/my-modes.el")
 ;(require 'my-modes)
 
@@ -56,7 +52,8 @@
 
 ;; mode line customization takes place last
 ;; (load "~/.emacs.d/my-modeline.el")
-;(require 'my-modeline)
+;(load "/home/edward/DEV/EMACS/my-modeline.el")
+(require 'my-modeline)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
