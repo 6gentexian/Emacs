@@ -35,16 +35,20 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Define LoadPath
 (add-to-list 'load-path "~/DEV/EMACS/")
-
 ;;(add-to-list 'load-path "~/.emacs.d/lisp/")
+
 ;; Load req'd packages, package repositories i.e. load important stuff first
-(require 'my-packages)
 
-
-
-;;
-;; (load "~/.emacs.d/my-modes.el")
+(load "/home/edward/DEV/EMACS/my-packages.el")
 ;(load "/home/edward/DEV/EMACS/my-modes.el")
+;(load "/home/edward/DEV/EMACS/my-modeline.el")
+
+;(require 'my-packages)
+
+
+;; (load "~/.emacs.d/my-modes.el")
+;(require 'my-modes)
+
 
 ;;(setf custom-file "~/.emacs.d/custom.el")
 ;(setf custom-file "/home/edward/DEV/EMACS/custom.el")
@@ -52,7 +56,7 @@
 
 ;; mode line customization takes place last
 ;; (load "~/.emacs.d/my-modeline.el")
-;(load "/home/edward/DEV/EMACS/my-modeline.el")
+;(require 'my-modeline)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 

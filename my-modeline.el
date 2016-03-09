@@ -139,3 +139,5 @@
 (add-hook 'dired-after-readin-hook 'my-mode-line-count-lines)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(provide 'my-modeline)

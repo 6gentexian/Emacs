@@ -72,21 +72,18 @@
        auto-mode-alist))
 
 ;; ;; Don't use TABS for indentations.
-;; (setq indent-tabs-mode nil)
-;; (setq tab-width 4)
-;; (setq tab-stop-list (number-sequence 4 200 4))
+;(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+;(setq-default tab-stop-list (number-sequence 4 200 4))
 
-(add-hook 'text-mode-hook
-  '(lambda ()
-     (setq tab-width 4)
-     (setq tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80))
-     (setq indent-tabs-mode nil)))
-
-
-     
+;(add-hook 'text-mode-hook
+;  '(lambda ()
      ;; (setq tab-width 4)
-     ;; (setq tab-stop-list (number-sequence 4 200 4)) 
+     ;; (setq tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80))
      ;; (setq indent-tabs-mode nil)))
+;     (setq tab-width 4)			
+;     (setq tab-stop-list (number-sequence 4 200 4)))) 
+;     (setq indent-tabs-mode nil)))
 
 ;;Handling Uncommon File Extensions
 (add-to-list 'auto-mode-alist '("\\.ext\\'" . text-mode))
@@ -176,3 +173,6 @@
 ;;   (add-hook 'org-mode-hook 'TeX-input-method)
 ;;   (add-hook 'markdown-mode-hook 'TeX-input-method)
 ;;   (add-hook 'latex-mode-hook 'TeX-input-method)
+
+
+(provide 'my-modes)
