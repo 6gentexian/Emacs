@@ -36,15 +36,15 @@
    (defun xsel-cut-function (text &optional push)
      ; Insert text to temp-buffer, and "send" content to xsel stdin
      (with-temp-buffer
-	(insert text)
+    (insert text)
 
-	(call-process-region (point-min) (point-max) "xsel" nil 0 nil "--clipboard" "--input")))
+    (call-process-region (point-min) (point-max) "xsel" nil 0 nil "--clipboard" "--input")))
     ;Call back for when user pastes
    (defun xsel-paste-function()
 
      (let ((xsel-output (shell-command-to-string "xsel --clipboard --output")))
-	(unless (string= (car kill-ring) xsel-output)
-	  xsel-output )))
+    (unless (string= (car kill-ring) xsel-output)
+      xsel-output )))
     ;Attach callbacks to hooks
    (setq interprogram-cut-function 'xsel-cut-function)
    (setq interprogram-paste-function 'xsel-paste-function)
@@ -139,11 +139,11 @@
 
 ;; Window switching. (C-x o goes to the next window)
 (global-set-key (kbd "C-x f") (lambda ()
-				(interactive)
-				(other-window -1))) ;; back one
+                (interactive)
+                (other-window -1))) ;; back one
 (global-set-key (kbd "C-x b") (lambda ()
-				  (interactive)
-				  (other-window 1))) ;; forward one
+                  (interactive)
+                  (other-window 1))) ;; forward one
 ;;(global-set-key "\C-xs" 'shell)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -158,13 +158,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;(defun display-startup-echo-area-message ()
-;  (message ".emacs loaded successfully."))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; BLOCK COMMENTING CODE
 (defun comment-dwim-line (&optional arg)
     "Replacement for the comment-dwim command.
@@ -175,7 +168,7 @@
     (interactive "*P")
     (comment-normalize-vars)
     (if (and (not (region-active-p)) (not (looking-at "[ \t]*$")))
-	(comment-or-uncomment-region (line-beginning-position) (line-end-position))
+    (comment-or-uncomment-region (line-beginning-position) (line-end-position))
       (comment-dwim arg)))
 
 (global-set-key "\M-;" 'comment-dwim-line)
@@ -268,10 +261,10 @@
 ;;     "Return a new file path of a given file path.
 ;;     If the new path's directories does not exist, create them."
 ;;     (let* (
-;;	   (backupRootDir "~/.emacs.d/emacs-backup/")
-;;	   (filePath (replace-regexp-in-string "[A-Za-z]:" "" fpath )) ; remove Windows driver letter in path, ⁖ “C:”
-;;	   (backupFilePath (replace-regexp-in-string "//" "/" (concat backupRootDir filePath "~") ))
-;;	   )
+;;     (backupRootDir "~/.emacs.d/emacs-backup/")
+;;     (filePath (replace-regexp-in-string "[A-Za-z]:" "" fpath )) ; remove Windows driver letter in path, ⁖ “C:”
+;;     (backupFilePath (replace-regexp-in-string "//" "/" (concat backupRootDir filePath "~") ))
+;;     )
 ;;       (make-directory (file-name-directory backupFilePath) (file-name-directory backupFilePath))
 ;;       backupFilePath
 ;;     )
@@ -355,34 +348,34 @@
 ;; TABS / INDENTATION
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;Here is AaronL’s C-style, as an example. It has been commented for your convenience.
-					;(setq-default c-indent-tabs-mode t     ; Pressing TAB should cause indentation;
-					;             c-indent-level 4         ; A TAB is equivilent to four spaces
-					;             c-argdecl-indent 0       ; Do not indent argument decl's extra
-					;             c-tab-always-indent t
-					;             backward-delete-function nil) ; DO NOT expand tabs when deleting
-					;(c-add-style "my-c-style" '((c-continued-statement-offset 4))) ; If a statement continues on the next line, indent the continuation by 4
+                    ;(setq-default c-indent-tabs-mode t     ; Pressing TAB should cause indentation;
+                    ;             c-indent-level 4         ; A TAB is equivilent to four spaces
+                    ;             c-argdecl-indent 0       ; Do not indent argument decl's extra
+                    ;             c-tab-always-indent t
+                    ;             backward-delete-function nil) ; DO NOT expand tabs when deleting
+                    ;(c-add-style "my-c-style" '((c-continued-statement-offset 4))) ; If a statement continues on the next line, indent the continuation by 4
 
-					;(defun my-c-mode-hook ()
-					; (c-set-style "my-c-style")
-					; (c-set-offset 'substatement-open '0) ; brackets should be at same indentation level as the statements they open
-					; (c-set-offset 'inline-open '+)
-					; (c-set-offset 'block-open '+)
-					; (c-set-offset 'brace-list-open '+)   ; all "opens" should be indented by the c-indent-level
-					; (c-set-offset 'case-label '+))       ; indent case labels by c-indent-level, too
-					;(add-hook 'c-mode-hook 'my-c-mode-hook)
-					;(add-hook 'c++-mode-hook 'my-c-mode-hook)
+                    ;(defun my-c-mode-hook ()
+                    ; (c-set-style "my-c-style")
+                    ; (c-set-offset 'substatement-open '0) ; brackets should be at same indentation level as the statements they open
+                    ; (c-set-offset 'inline-open '+)
+                    ; (c-set-offset 'block-open '+)
+                    ; (c-set-offset 'brace-list-open '+)   ; all "opens" should be indented by the c-indent-level
+                    ; (c-set-offset 'case-label '+))       ; indent case labels by c-indent-level, too
+                    ;(add-hook 'c-mode-hook 'my-c-mode-hook)
+                    ;(add-hook 'c++-mode-hook 'my-c-mode-hook)
 
 ;;Setting Tab to indent region if anything is selected
-					;(defun tab-indents-region ()
-					;  (local-set-key [(tab)] 'fledermaus-maybe-tab))
-					;(add-hook 'c-mode-common-hook   'tab-indents-region)
+                    ;(defun tab-indents-region ()
+                    ;  (local-set-key [(tab)] 'fledermaus-maybe-tab))
+                    ;(add-hook 'c-mode-common-hook   'tab-indents-region)
 
 ;;fledermaus came up with this
-					;(defun fledermaus-maybe-tab ()
-					;  (interactive)
-					;  (if (and transient-mark-mode mark-active)
-					;      (indent-region (region-beginning) (region-end) nil)
-					;    (c-indent-command)))
+                    ;(defun fledermaus-maybe-tab ()
+                    ;  (interactive)
+                    ;  (if (and transient-mark-mode mark-active)
+                    ;      (indent-region (region-beginning) (region-end) nil)
+                    ;    (c-indent-command)))
 
 
 ;; ;; if (aspell installed) { use aspell}
@@ -400,7 +393,7 @@
 ;;       ;; force the English dictionary, support Camel Case spelling check (tested with aspell 0.6)
 ;;       (setq args (list "--sug-mode=ultra" "--lang=en_US"))
 ;;       (if RUN-TOGETHER
-;;	  (setq args (append args '("--run-together" "--run-together-limit=5" "--run-together-min=2")))))
+;;    (setq args (append args '("--run-together" "--run-together-limit=5" "--run-together-min=2")))))
 ;;      ((string-match "hunspell$" ispell-program-name)
 ;;       (setq args nil)))
 ;;     args

@@ -28,6 +28,7 @@
     ess-R-object-popup
     autopair
     python-mode
+    log4j-mode
     org
     org-ac
     org-beautify-theme

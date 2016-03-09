@@ -24,7 +24,7 @@
 ;; To compile documents to PDF (via PDFLaTeX) by default add the following to your ~/.emacs.
 (setq TeX-PDF-mode t)
 
-;; If it doesn’t work, try 
+;; If it doesn’t work, try
 ;; (require 'tex)
 ;; (TeX-global-PDF-mode t)
 
@@ -59,33 +59,52 @@
       (append
        ;; File name (within directory) starts with a dot.
        '(("/\\.[^/]*\\'" . emacs-lisp-mode)
-	 ;; File name has no dot.
-	 ("/[^\\./]*\\'" . emacs-lisp-mode)
-	 ;; File name ends in ‘.C’.
-	 ("\\.C\\'" . c++-mode)
-	 ("\\.c\\'" . c-mode)
-	 ("\\.h\\'" . c-mode)
-	 ;; emacs file ftw
-	 ("\\.el\\'" . emacs-lisp-mode)
-	 ("\\.R\\'" . R-mode)
-	 ("\\.r\\'" . R-mode)
-	 ("\\.txt$" . text-mode)
-	 ("\\.bib$" . org-mode)
-	 )
+     ;; File name has no dot.
+     ("/[^\\./]*\\'" . emacs-lisp-mode)
+     ;; File name ends in ‘.C’.
+     ("\\.C\\'" . c++-mode)
+     ("\\.c\\'" . c-mode)
+     ("\\.h\\'" . c-mode)
+     ;; emacs file ftw
+     ("\\.el\\'" . emacs-lisp-mode)
+     ("\\.R\\'" . R-mode)
+     ("\\.r\\'" . R-mode)
+     ("\\.txt$" . text-mode)
+     ("\\.bib$" . org-mode)
+     )
        auto-mode-alist))
 
 ;; ;; Text mode only for now
-;(add-hook 'text-mode-hook
-;  '(lambda ()
-     ;; (setq tab-width 4)
-     ;; (setq tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80))
-     ;; (setq indent-tabs-mode nil)))
-;     (setq tab-width 4)			
-;     (setq tab-stop-list (number-sequence 4 200 4)))) 
-;     (setq indent-tabs-mode nil)))
+;; (add-hook 'text-mode-hook
+;;  '(lambda ()
+;;     (setq tab-width 4)
+;;     (setq tab-stop-list (number-sequence 4 200 4))
+;;     (setq indent-tabs-mode nil)))
+
+(defun my-add-to-multiple-hooks (function hooks)
+  (mapc (lambda (hook)
+      (add-hook hook function))
+    hooks))
+
+(defun my-tabs-to-space-indent-4 ()
+  (setq tab-width 4)
+  (setq tab-stop-list (number-sequence 4 200 4))
+  (setq indent-tabs-mode nil))
+
+(my-add-to-multiple-hooks
+ 'my-tabs-to-space-indent-4
+ '(text-mode-hook
+   prog-mode-hook
+   log-mode-hook))
+;   python-mode-hook
+;   R-mode-hook
+;   latex-mode-hook  ;; make tab goto 9 spaces!
+;   emacs-lisp-mode-hook
+;   org-mode-hook))
+
 
 ;;Handling Uncommon File Extensions
-(add-to-list 'auto-mode-alist '("\\.ext\\'" . text-mode))
+(add-to-list 'auto-mode-alist '("\\.ext\\'" . prog-mode))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -99,8 +118,8 @@
       interpreter-mode-alist)
     python-mode-hook
       '(lambda () (progn
-	    (set-variable 'py-indent-offset 4)
-	    (set-variable 'indent-tabs-mode nil))))
+        (set-variable 'py-indent-offset 4)
+        (set-variable 'indent-tabs-mode nil))))
 
 (add-to-list 'auto-mode-alist '("\\.pyx\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.ppl\\'" . python-mode))
@@ -124,10 +143,30 @@
 
 ;; Red Warnings
 ;; Various keywords (in comments) are now flagged in a Red Error font:
-(add-hook 'prog-common-hook
-	  (lambda ()
-	    (font-lock-add-keywords nil
-   '(("\\<\\(FIX\\|FIXME\\|TODO\\|BUG\\|HACK\\):" 1 font-lock-warning-face t)))))
+(add-hook 'text-mode-hook
+  (lambda ()  (font-lock-add-keywords nil
+  '(("\\<\\(FIX\\|FIXME\\|TODO\\|BUG\\|HACK\\):" 1 font-lock-warning-face t)))))
+(add-hook 'prog-mode-hook
+  (lambda ()  (font-lock-add-keywords nil
+  '(("\\<\\(FIX\\|FIXME\\|TODO\\|BUG\\|HACK\\):" 1 font-lock-warning-face t)))))
+(add-hook 'log4j-mode-hook
+  (lambda ()  (font-lock-add-keywords nil
+  '(("\\<\\(FIX\\|FIXME\\|TODO\\|BUG\\|HACK\\):" 1 font-lock-warning-face t)))))
+(add-hook 'python-mode-hook
+  (lambda ()  (font-lock-add-keywords nil
+  '(("\\<\\(FIX\\|FIXME\\|TODO\\|BUG\\|HACK\\):" 1 font-lock-warning-face t)))))
+(add-hook 'R-mode-hook
+  (lambda ()  (font-lock-add-keywords nil
+  '(("\\<\\(FIX\\|FIXME\\|TODO\\|BUG\\|HACK\\):" 1 font-lock-warning-face t)))))
+(add-hook 'latex-mode-hook
+  (lambda ()  (font-lock-add-keywords nil
+  '(("\\<\\(FIX\\|FIXME\\|TODO\\|BUG\\|HACK\\):" 1 font-lock-warning-face t)))))
+(add-hook 'emacs-lisp-mode-hook
+  (lambda ()  (font-lock-add-keywords nil
+  '(("\\<\\(FIX\\|FIXME\\|TODO\\|BUG\\|HACK\\):" 1 font-lock-warning-face t)))))
+(add-hook 'org-mode-hook
+  (lambda ()  (font-lock-add-keywords nil
+  '(("\\<\\(FIX\\|FIXME\\|TODO\\|BUG\\|HACK\\):" 1 font-lock-warning-face t)))))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;(org-babel-do-load-languages
 ;; 'org-babel-load-languages
