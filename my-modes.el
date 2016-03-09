@@ -5,6 +5,9 @@
 ;; Info corresponding to setting and configuring modes
 ;;
 ;; Is it me, or are some of these setting chronically wonky??
+;;
+;;  TODO: get abrev-mode working for auctex
+;;        try and set custom tabs n text-mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -31,11 +34,12 @@
 ;; using text-mode. This may not be the expected behavior.
 ;; Here is how to define abbreviations that work in auctex modes only,
 ;; without interfering with the standard text-mode. In the InitFile, put:
-(define-abbrev-table 'TeX-mode-abbrev-table (make-abbrev-table))
-(add-hook 'TeX-mode-hook (lambda ()
-   (setq abbrev-mode t)
-   (setq local-abbrev-table TeX-mode-abbrev-table)))
+;; (define-abbrev-table 'TeX-mode-abbrev-table (make-abbrev-table))
+;; (add-hook 'TeX-mode-hook (lambda ()
+;;    (setq abbrev-mode t)
+;;    (setq local-abbrev-table TeX-mode-abbrev-table)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ESS
@@ -46,7 +50,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; FILE EXTENSIONS -> ACTIVATE VARIOUS MAJOR MODES
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (setq default-major-mode 'emacs-lisp-mode)
 
 ;; if first line of file matches, activate text-mode ? sh-mode??
@@ -71,11 +74,7 @@
 	 )
        auto-mode-alist))
 
-;; ;; Don't use TABS for indentations.
-;(setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
-;(setq-default tab-stop-list (number-sequence 4 200 4))
-
+;; ;; Text mode only for now
 ;(add-hook 'text-mode-hook
 ;  '(lambda ()
      ;; (setq tab-width 4)
@@ -103,14 +102,12 @@
 	    (set-variable 'py-indent-offset 4)
 	    (set-variable 'indent-tabs-mode nil))))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-to-list 'auto-mode-alist '("\\.pyx\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.ppl\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.pyw\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.pyc\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.py\\'"  . python-mode))
 (add-to-list 'auto-mode-alist '("\\.wsgi$"  . python-mode))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

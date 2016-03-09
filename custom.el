@@ -14,15 +14,6 @@
 (require 'mouse)
 (xterm-mouse-mode t)
 
-;(defvar curent-hostname
-;  (or (getenv "HOSTNAME") (getenv "COMPUTERNAME") "unknown")
-;  "hostname of this machine")
-
-;(setq current-hostname (getenv "HOSTNAME"))
-;(display-message "$HOSTNAME depth is %s."
-;	 (current-hostname))
-
-
 ;; Turn on auto complete.
 (require 'auto-complete-config)
 (ac-config-default)
@@ -64,8 +55,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; This makes sure that brace structures (), [], {}, etc. are closed as soon as
 ;;  the opening character is typed.
-(require 'autopair)
-
 (show-paren-mode t)
 (setq-default show-paren-delay 0)
 (setq-default scroll-step 1)
@@ -96,7 +85,18 @@
 ;; Emacs usually has a splash screen on startup.
 ;; Get rid of that and start with a blank buffer.
 (setq  inhibit-startup-message t
-       inhibit-splash-screen t)
+       inhibit-splash-screen t
+       inhibit-startup-echo-area-message t)
+
+(setq hostname
+  (replace-regexp-in-string "\\`[ \t\n]*" ""
+  (replace-regexp-in-string "[ \t\n]*\\'" ""
+  (shell-command-to-string "hostname"))))
+
+(defun display-startup-echo-area-message ()
+  (message  ".emacs loaded on %s " hostname))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 
 ;; Set encoding
 (setq  prefer-coding-system 'utf-8)
@@ -160,8 +160,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;(defun display-startup-echo-area-message ()
 ;  (message ".emacs loaded successfully."))
-;;(message "HOSTNAME depth is %s."
-;;	 (current-hostname)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -183,16 +181,6 @@
 (global-set-key "\M-;" 'comment-dwim-line)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; Identify $HOSTNAME
-(setf hostname
-      (with-temp-buffer
-	(call-process "hostname" nil t)
-	(let ((hostname* (buffer-string)))
-	  (while (string-match "[\r\n\t ]+" hostname*)
-	    (setq hostname* (replace-match "" t t hostname*)))
-	  hostname*)))
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defconst win32
@@ -251,6 +239,7 @@
 ;; /usr/share/emacs/24.5/etc/themes
 (load-theme 'tango-dark t)
 
+;; Nertz bollocky bell!!!
 (setf visible-bell t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -326,6 +315,11 @@
 ;; (global-set-key (kbd "C-c b") 'cleanup-buffer)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;; Don't use TABS for indentations.
+;(setq-default indent-tabs-mode nil)
+;(setq-default tab-width 4)
+;(setq-default tab-stop-list (number-sequence 4 200 4))
+
 
 ;; ;; I have learned to distrust tabs in my source code,
 ;; ;; so let’s make sure that we only have spaces.
