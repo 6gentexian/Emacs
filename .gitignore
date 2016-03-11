@@ -2,6 +2,7 @@
 saveplace*
 *.el~
 *~
+ac-complete*
 
 # Ignore everything in sub-folders/
 auto-save-list/

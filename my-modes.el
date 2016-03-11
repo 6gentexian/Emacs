@@ -74,8 +74,8 @@
      )
        auto-mode-alist))
 
-;; ;; Text mode only for now
-;; (add-hook 'text-mode-hook
+;; ;; WHy is this so stubborn - it never changes!!
+;; (add-hook 'emacs-lisp-mode-hook
 ;;  '(lambda ()
 ;;     (setq tab-width 4)
 ;;     (setq tab-stop-list (number-sequence 4 200 4))
@@ -95,13 +95,11 @@
  'my-tabs-to-space-indent-4
  '(text-mode-hook
    prog-mode-hook
-   log-mode-hook))
-;   python-mode-hook
-;   R-mode-hook
-;   latex-mode-hook  ;; make tab goto 9 spaces!
-;   emacs-lisp-mode-hook
+   log-mode-hook
+   python-mode-hook
+   emacs-lisp-mode-hook))
 ;   org-mode-hook))
-
+;  // R-mode defaults to 2 - can't seem to change it...?
 
 ;;Handling Uncommon File Extensions
 (add-to-list 'auto-mode-alist '("\\.ext\\'" . prog-mode))
@@ -113,13 +111,6 @@
 
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 
-(setq interpreter-mode-alist
-    (cons '("python" . python-mode)
-      interpreter-mode-alist)
-    python-mode-hook
-      '(lambda () (progn
-        (set-variable 'py-indent-offset 4)
-        (set-variable 'indent-tabs-mode nil))))
 
 (add-to-list 'auto-mode-alist '("\\.pyx\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.ppl\\'" . python-mode))
