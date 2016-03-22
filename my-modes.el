@@ -10,6 +10,15 @@
 ;;        try and set custom tabs n text-mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+;; sample files/type
+;; /home/edward/TMP/test.ext
+;; /home/edward/TMP/nscpmsg.txt
+;; /home/edward/TMP/xsel.log
+;; /home/edward/TMP/dataTest.py
+;; /home/edward/TMP/cv-1-short.html
+;; /home/edward/TMP/CV_Master.tex
+;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  Set autopair and auto-comlpete globally
 (require 'autopair)
@@ -70,17 +79,17 @@
      ("\\.R\\'" . R-mode)
      ("\\.r\\'" . R-mode)
      ("\\.txt$" . text-mode)
+     ("\\.ext$" . prog-mode)
+     ("\\.tmp$" . text-mode)
+     ("\\.html$" . web-mode)
+     ("\\.log$" . log-view-mode)
+     ("\\.tex$" . latex-mode)
      ("\\.bib$" . org-mode)
      )
-       auto-mode-alist))
+       auto-mode-alist)
+)
 
-;; ;; WHy is this so stubborn - it never changes!!
-;; (add-hook 'emacs-lisp-mode-hook
-;;  '(lambda ()
-;;     (setq tab-width 4)
-;;     (setq tab-stop-list (number-sequence 4 200 4))
-;;     (setq indent-tabs-mode nil)))
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun my-add-to-multiple-hooks (function hooks)
   (mapc (lambda (hook)
       (add-hook hook function))
@@ -98,11 +107,9 @@
    log-mode-hook
    python-mode-hook
    emacs-lisp-mode-hook))
-;   org-mode-hook))
+;   org-mode-hook))  // no effect
 ;  // R-mode defaults to 2 - can't seem to change it...?
 
-;;Handling Uncommon File Extensions
-(add-to-list 'auto-mode-alist '("\\.ext\\'" . prog-mode))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -127,7 +134,7 @@
 ;; js-mode defaults to using 4 spaces for indentation. Change it to 2
 (defun js-custom ()
   "js-mode-hook"
-  (setq js-indent-level 4))
+  (setq js-indent-level 2))
 
 (add-hook 'js-mode-hook 'js-custom)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -164,42 +171,54 @@
 ;; '((R . t)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Turn on auto complete.
-;; (require 'auto-complete-config)
-;; (ac-config-default)
+(require 'auto-complete-config)
+(ac-config-default)
 
-;(global-auto-complete-mode)
-;(eval-after-load "auto-complete"
-;  '(add-to-list 'ac-modes '(geiser-repl-mode geiser-mode) t))
+(global-auto-complete-mode)
+(eval-after-load "auto-complete"
+ '(add-to-list 'ac-modes '(geiser-repl-mode geiser-mode) t))
 
-;; (require 'flycheck)
-;; ;; (global-flycheck-mode t)
-;; ;; (add-hook 'after-init-hook #'global-flycheck-mode)
+
+(require 'flycheck)
+;; (global-flycheck-mode t)
+;;(add-hook 'after-init-hook #'global-flycheck-mode)
+
+
+(require 'flyspell)
+(setq flyspell-sort-corrections nil)
+(setq flyspell-doublon-as-error-flag nil)
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+(add-hook 'org-mode-hook 'turn-on-flyspell)
+
+
+(global-set-key (kbd "C-S-<f8>") 'flyspell-mode)
+(global-set-key (kbd "C-M-<f8>") 'flyspell-buffer)
+(global-set-key (kbd "C-<f8>") 'flyspell-check-previous-highlighted-word)
+(defun flyspell-check-next-highlighted-word ()
+  "Custom function to spell check next highlighted word"
+  (interactive)
+  (flyspell-goto-next-error)
+  (ispell-word)
+  )
+(global-set-key (kbd "M-<f8>") 'flyspell-check-next-highlighted-word)
 
 ;; (add-hook 'org-mode-hook 'flyspell-mode)
 ;; (add-hook 'markdown-mode-hook 'flyspell-mode)
-
 ;; (add-hook 'latex-mode-hook 'flyspell-mode)
-;; (add-hook 'web-mode-hook 'flyspell-mode)
-
+(add-hook 'web-mode-hook 'flyspell-mode)
 ;; (add-hook 'c++-mode-hook 'flyspell-mode)
 ;; (add-hook 'c-mode-hook 'flyspell-mode)
-
 ;; (add-hook 'emacs-lisp-mode-hook 'flyspell-mode -1)
 ;; (add-hook 'python-mode-hook 'flyspell-mode)
-
 ;; (add-hook 'sh-mode-hook 'flyspell-mode)
-;; (add-hook 'org-mode-hook 'flyspell-mode)
 
-;; (dolist (hook '(text-mode-hook))
-;;   (add-hook hook (lambda () (flyspell-mode 1))))
-;; (dolist (hook '(change-log-mode-hook log-edit-mode-hook))
-;;   (add-hook hook (lambda () (flyspell-mode -1))))
-
+(dolist (hook '(change-log-mode-hook log-edit-mode-hook))
+  (add-hook hook (lambda () (flyspell-mode -1))))
 
 ;; (defun TeX-input-method () (set-input-method 'TeX))
 ;;   (add-hook 'org-mode-hook 'TeX-input-method)
 ;;   (add-hook 'markdown-mode-hook 'TeX-input-method)
 ;;   (add-hook 'latex-mode-hook 'TeX-input-method)
-
 
 (provide 'my-modes)
