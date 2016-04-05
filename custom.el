@@ -1,13 +1,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; TODO: Confirm whitespace cleanup)
-;;       so that copy/paste doeesn't get wonky with the crazy indentations
-;;
-;;       Get a handle on indentations
-;;       - spaces for python mode?
-;;       - indent == 2 spaces for html?
-;;       tabs are tabs for everything else?
-;;
+;; TODO: Confirm whitespace cleanup so that copy/paste doesn't get wonky
+;;       with the crazy indentations
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; NEEDED TO GET ENABLE MOUSE TO SET ACTIVE REGION
@@ -29,7 +23,8 @@
 ;; CAN NOW PASTE TO /COPY FROM WINDOWS
 (setq x-select-enable-clipboard t)
 
-;; USES BUGGERY TO MAKE THINGS WORK LIKE THEY USED TO IN EMACS <=23
+
+;; USE BUGGERY TO MAKE THINGS WORK LIKE THEY USED TO IN EMACS <=23
 (unless window-system
  (when (getenv "DISPLAY")
    ; Callback for when user cuts
@@ -143,7 +138,7 @@
 (global-set-key (kbd "C-<tab>") (lambda ()
                   (interactive)
                   (other-window 1))) ;; forward one
-;;(global-set-key "\C-xs" 'shell)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
@@ -201,7 +196,7 @@
       (height            . 50)
     )
   )
-  (cd "C:/Praxeum/Dropbox/")
+  (cd "C:/Dropbox/")
 )
 
 (when linux
@@ -256,183 +251,9 @@
   kept-old-versions 4
   version-control t)                      ; use versioned backups
 
-;; (defun my-backup-file-name (fpath)
-;;     "Return a new file path of a given file path.
-;;     If the new path's directories does not exist, create them."
-;;     (let* (
-;;     (backupRootDir "~/.emacs.d/emacs-backup/")
-;;     (filePath (replace-regexp-in-string "[A-Za-z]:" "" fpath )) ; remove Windows driver letter in path, ⁖ “C:”
-;;     (backupFilePath (replace-regexp-in-string "//" "/" (concat backupRootDir filePath "~") ))
-;;     )
-;;       (make-directory (file-name-directory backupFilePath) (file-name-directory backupFilePath))
-;;       backupFilePath
-;;     )
-;; )
-;; (setq make-backup-file-name-function 'my-backup-file-name)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Open file at the last place where it was when you previously saved the file
 (setq save-place-file "~/.emacs.d/saveplace")
 (setq-default save-place t)                   ;; activate it for all buffers
 (require 'saveplace)                          ;; get the package
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Indentation and buffer cleanup
-;; This re-indents, untabifies, and cleans up whitespace. It is stolen directly from the emacs-starter-kit.
-;; (defun untabify-buffer ()
-;;  (interactive)
-;;  (untabify (point-min) (point-max)))
-
-;; (defun indent-buffer ()
-;;  (interactive)
-;;  (indent-region (point-min) (point-max)))
-
-;; (defun cleanup-buffer ()
-;;  "Perform a bunch of operations on the whitespace content of a buffer."
-;;  (interactive)
-;;  (indent-buffer)
-;;  (untabify-buffer)
-;;  (delete-trailing-whitespace))
-
-;; (defun cleanup-region (beg end)
-;;  (interactive)
-;;  (indent-buffer)
-;;  (untabify-buffer)
-;;  (delete-trailing-whitespace))
-;;  delete-trailing-lines to nil
-
-;; (global-set-key (kbd "C-c b") 'cleanup-region)
-;; (global-set-key (kbd "C-c b") 'cleanup-buffer)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ;; Don't use TABS for indentations.
-;(setq-default indent-tabs-mode nil)
-;(setq-default tab-width 4)
-;(setq-default tab-stop-list (number-sequence 4 200 4))
-
-
-;; ;; I have learned to distrust tabs in my source code,
-;; ;; so let’s make sure that we only have spaces.
-;; (setq-default indent-tabs-mode nil)
-;; (setq tab-width 2)
-;; ;;Make tab key do indent first then completion.
-;; (setq-default tab-always-indent 'complete)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (defun xah-clean-whitespace (p1 p2)
-;;     "Delete trailing whitespace, and replace repeated blank lines into just 2.
-;;      This function works on whole buffer or text selection.
-
-;;      URL `http://ergoemacs.org/emacs/elisp_compact_empty_lines.html'
-;;      version 2015-02-06"
-;;     (interactive
-;;       (if (region-active-p)
-;;         (list (region-beginning) (region-end))
-;;       (list 1 (point-max))))
-;;     (save-excursion
-;;       (save-restriction
-;;         (narrow-to-region p1 p2)
-;;         (progn
-;;           (goto-char (point-min))
-;;           (while (search-forward-regexp "[ \t]+\n" nil "noerror")
-;;             (replace-match "\n")))
-;;         (progn
-;;           (goto-char (point-min))
-;;           (while (search-forward-regexp "\n\n\n+" nil "noerror")
-;;                    (replace-match "\n\n"))))))
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; TABS / INDENTATION
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;Here is AaronL’s C-style, as an example. It has been commented for your convenience.
-                    ;(setq-default c-indent-tabs-mode t     ; Pressing TAB should cause indentation;
-                    ;             c-indent-level 4         ; A TAB is equivilent to four spaces
-                    ;             c-argdecl-indent 0       ; Do not indent argument decl's extra
-                    ;             c-tab-always-indent t
-                    ;             backward-delete-function nil) ; DO NOT expand tabs when deleting
-                    ;(c-add-style "my-c-style" '((c-continued-statement-offset 4))) ; If a statement continues on the next line, indent the continuation by 4
-
-                    ;(defun my-c-mode-hook ()
-                    ; (c-set-style "my-c-style")
-                    ; (c-set-offset 'substatement-open '0) ; brackets should be at same indentation level as the statements they open
-                    ; (c-set-offset 'inline-open '+)
-                    ; (c-set-offset 'block-open '+)
-                    ; (c-set-offset 'brace-list-open '+)   ; all "opens" should be indented by the c-indent-level
-                    ; (c-set-offset 'case-label '+))       ; indent case labels by c-indent-level, too
-                    ;(add-hook 'c-mode-hook 'my-c-mode-hook)
-                    ;(add-hook 'c++-mode-hook 'my-c-mode-hook)
-
-;;Setting Tab to indent region if anything is selected
-                    ;(defun tab-indents-region ()
-                    ;  (local-set-key [(tab)] 'fledermaus-maybe-tab))
-                    ;(add-hook 'c-mode-common-hook   'tab-indents-region)
-
-;;fledermaus came up with this
-                    ;(defun fledermaus-maybe-tab ()
-                    ;  (interactive)
-                    ;  (if (and transient-mark-mode mark-active)
-                    ;      (indent-region (region-beginning) (region-end) nil)
-                    ;    (c-indent-command)))
-
-
-;; ;; if (aspell installed) { use aspell}
-;; ;; else if (hunspell installed) { use hunspell }
-;; ;; whatever spell checker I use, I always use English dictionary
-;; ;; I prefer use aspell because:
-;; ;; 1. aspell is older
-;; ;; 2. looks Kevin Atkinson still get some road map for aspell:
-;; ;; @see http://lists.gnu.org/archive/html/aspell-announce/2011-09/msg00000.html
-;; (defun flyspell-detect-ispell-args (&optional RUN-TOGETHER)
-;;   "if RUN-TOGETHER is true, spell check the CamelCase words"
-;;   (let (args)
-;;     (cond
-;;      ((string-match  "aspell$" ispell-program-name)
-;;       ;; force the English dictionary, support Camel Case spelling check (tested with aspell 0.6)
-;;       (setq args (list "--sug-mode=ultra" "--lang=en_US"))
-;;       (if RUN-TOGETHER
-;;    (setq args (append args '("--run-together" "--run-together-limit=5" "--run-together-min=2")))))
-;;      ((string-match "hunspell$" ispell-program-name)
-;;       (setq args nil)))
-;;     args
-;;   )
-;; )
-
-;; (cond
-;;  ((executable-find "aspell")
-;;   (setq ispell-program-name "aspell"))
-;;  ((executable-find "hunspell")
-;;   (setq ispell-program-name "hunspell")
-;;   ;; just reset dictionary to the safe one "en_US" for hunspell.
-;;   ;; if we need use different dictionary, we specify it in command line arguments
-;;   (setq ispell-local-dictionary "en_US")
-;;   (setq ispell-local-dictionary-alist
-;;	'(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil nil nil utf-8))))
-;;  (t (setq ispell-program-name nil)))
-
-;; ;; ispell-cmd-args is useless, it's the list of *extra* arguments we will append
-;; ;; to the ispell process when "ispell-word" is called.
-;; ;; ispell-extra-args is the command arguments which will *always* be used when
-;; ;; start ispell process
-;; (setq ispell-extra-args (flyspell-detect-ispell-args t))
-;; ;; (setq ispell-cmd-args (flyspell-detect-ispell-args))
-;; (defadvice ispell-word (around my-ispell-word activate)
-;;   (let ((old-ispell-extra-args ispell-extra-args))
-;;     (ispell-kill-ispell t)
-;;     (setq ispell-extra-args (flyspell-detect-ispell-args))
-;;     ad-do-it
-;;     (setq ispell-extra-args old-ispell-extra-args)
-;;     (ispell-kill-ispell t)
-;;     ))
-
-;; (defadvice flyspell-auto-correct-word (around my-flyspell-auto-correct-word activate)
-;;   (let ((old-ispell-extra-args ispell-extra-args))
-;;     (ispell-kill-ispell t)
-;;     ;; use emacs original arguments
-;;     (setq ispell-extra-args (flyspell-detect-ispell-args))
-;;     ad-do-it
-;;     ;; restore our own ispell arguments
-;;     (setq ispell-extra-args old-ispell-extra-args)
-;;     (ispell-kill-ispell t)
-;;     ))
