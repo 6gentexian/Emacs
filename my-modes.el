@@ -4,10 +4,11 @@
 ;;
 ;; Info corresponding to setting and configuring modes
 ;;
-;; Is it me, or are some of these setting chronically wonky??
+;; Is it me, or are some of these settings chronically wonky??
 ;;
 ;;  TODO: get abrev-mode working for auctex
 ;;        try and set custom tabs n text-mode
+;;        add custom comment symbol for each kind of mode type
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
@@ -87,6 +88,7 @@
        auto-mode-alist)
 )
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun my-add-to-multiple-hooks (function hooks)
   (mapc (lambda (hook)
@@ -107,28 +109,31 @@
    emacs-lisp-mode-hook))
 ;   org-mode-hook))  // no effect
 ;  // R-mode defaults to 2 - can't seem to change it...?
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ;; Python mode settings
+;; Modes
+;;
+;; Python mode settings
+;;
 (require 'python-mode)
 
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 
-
 (add-to-list 'auto-mode-alist '("\\.pyx\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.ppl\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.pyw\\'" . python-mode))
+
 (add-to-list 'auto-mode-alist '("\\.pyc\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.py\\'"  . python-mode))
 (add-to-list 'auto-mode-alist '("\\.wsgi$"  . python-mode))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Modes
-;;
 ;; JavaScript Mode
+;;
 ;; js-mode defaults to using 4 spaces for indentation. Change it to 2
 (defun js-custom ()
   "js-mode-hook"
@@ -137,36 +142,37 @@
 (add-hook 'js-mode-hook 'js-custom)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Red Warnings
+;; Red Warnings in the top comment section
 ;; Various keywords (in comments) are now flagged in a Red Error font:
 (add-hook 'text-mode-hook
   (lambda ()  (font-lock-add-keywords nil
-  '(("\\<\\(FIX\\|FIXME\\|TODO\\|BUG\\|HACK\\):" 1 font-lock-warning-face t)))))
+  '(("\\<\\(FIX\\|FIXME\\|TODOs\\|TODO\\|BUG\\|HACK\\):" 1 font-lock-warning-face t)))))
 (add-hook 'prog-mode-hook
   (lambda ()  (font-lock-add-keywords nil
-  '(("\\<\\(FIX\\|FIXME\\|TODO\\|BUG\\|HACK\\):" 1 font-lock-warning-face t)))))
+  '(("\\<\\(FIX\\|FIXME\\|TODOs\\|TODO\\|BUG\\|HACK\\):" 1 font-lock-warning-face t)))))
 (add-hook 'log4j-mode-hook
   (lambda ()  (font-lock-add-keywords nil
-  '(("\\<\\(FIX\\|FIXME\\|TODO\\|BUG\\|HACK\\):" 1 font-lock-warning-face t)))))
+  '(("\\<\\(FIX\\|FIXME\\|TODOs\\|TODO\\|BUG\\|HACK\\):" 1 font-lock-warning-face t)))))
 (add-hook 'python-mode-hook
   (lambda ()  (font-lock-add-keywords nil
-  '(("\\<\\(FIX\\|FIXME\\|TODO\\|BUG\\|HACK\\):" 1 font-lock-warning-face t)))))
+  '(("\\<\\(FIX\\|FIXME\\|TODOs\\|TODO\\|BUG\\|HACK\\):" 1 font-lock-warning-face t)))))
 (add-hook 'R-mode-hook
   (lambda ()  (font-lock-add-keywords nil
-  '(("\\<\\(FIX\\|FIXME\\|TODO\\|BUG\\|HACK\\):" 1 font-lock-warning-face t)))))
+  '(("\\<\\(FIX\\|FIXME\\|TODOs\\|TODO\\|BUG\\|HACK\\):" 1 font-lock-warning-face t)))))
 (add-hook 'latex-mode-hook
   (lambda ()  (font-lock-add-keywords nil
-  '(("\\<\\(FIX\\|FIXME\\|TODO\\|BUG\\|HACK\\):" 1 font-lock-warning-face t)))))
+  '(("\\<\\(FIX\\|FIXME\\|TODOs\\|TODO\\|BUG\\|HACK\\):" 1 font-lock-warning-face t)))))
 (add-hook 'emacs-lisp-mode-hook
   (lambda ()  (font-lock-add-keywords nil
-  '(("\\<\\(FIX\\|FIXME\\|TODO\\|BUG\\|HACK\\):" 1 font-lock-warning-face t)))))
+  '(("\\<\\(FIX\\|FIXME\\|TODOs\\|TODO\\|BUG\\|HACK\\):" 1 font-lock-warning-face t)))))
 (add-hook 'org-mode-hook
   (lambda ()  (font-lock-add-keywords nil
-  '(("\\<\\(FIX\\|FIXME\\|TODO\\|BUG\\|HACK\\):" 1 font-lock-warning-face t)))))
+  '(("\\<\\(FIX\\|FIXME\\|TODOs\\|TODO\\|BUG\\|HACK\\):" 1 font-lock-warning-face t)))))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;(org-babel-do-load-languages
 ;; 'org-babel-load-languages
 ;; '((R . t)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Turn on auto complete.
 (require 'auto-complete-config)
@@ -175,14 +181,14 @@
 (global-auto-complete-mode)
 (eval-after-load "auto-complete"
  '(add-to-list 'ac-modes '(geiser-repl-mode geiser-mode) t))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'flycheck)
-;; (global-flycheck-mode t)
-;;(add-hook 'after-init-hook #'global-flycheck-mode)
-
 
 (require 'flyspell)
+
 (setq flyspell-sort-corrections nil)
 (setq flyspell-doublon-as-error-flag nil)
 (add-hook 'text-mode-hook 'flyspell-mode)
@@ -193,6 +199,7 @@
 (global-set-key (kbd "C-S-<f8>") 'flyspell-mode)
 (global-set-key (kbd "C-M-<f8>") 'flyspell-buffer)
 (global-set-key (kbd "C-<f8>") 'flyspell-check-previous-highlighted-word)
+
 (defun flyspell-check-next-highlighted-word ()
   "Custom function to spell check next highlighted word"
   (interactive)
@@ -201,14 +208,10 @@
   )
 (global-set-key (kbd "M-<f8>") 'flyspell-check-next-highlighted-word)
 
-;; (add-hook 'org-mode-hook 'flyspell-mode)
 ;; (add-hook 'markdown-mode-hook 'flyspell-mode)
 ;; (add-hook 'latex-mode-hook 'flyspell-mode)
 (add-hook 'web-mode-hook 'flyspell-mode)
-;; (add-hook 'c++-mode-hook 'flyspell-mode)
-;; (add-hook 'c-mode-hook 'flyspell-mode)
 ;; (add-hook 'emacs-lisp-mode-hook 'flyspell-mode -1)
-;; (add-hook 'python-mode-hook 'flyspell-mode)
 ;; (add-hook 'sh-mode-hook 'flyspell-mode)
 
 (dolist (hook '(change-log-mode-hook log-edit-mode-hook))
@@ -218,5 +221,7 @@
 ;;   (add-hook 'org-mode-hook 'TeX-input-method)
 ;;   (add-hook 'markdown-mode-hook 'TeX-input-method)
 ;;   (add-hook 'latex-mode-hook 'TeX-input-method)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 
 (provide 'my-modes)
