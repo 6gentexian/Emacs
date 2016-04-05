@@ -129,19 +129,18 @@
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(global-set-key [f1] "\C-x3")
-(global-set-key [f2] "\C-x2")
+(global-set-key [f1] "\C-x3")  ;; Split vert
+(global-set-key [f2] "\C-x2")  ;; Split horiz
 (global-set-key [f3] 'goto-line)
 (global-set-key [f5] 'revert-buffer-no-confirm)
 
-(global-set-key (kbd "C-1") 'delete-window)
-(global-set-key (kbd "C-0") 'delete-other-windows)
+(global-set-key (kbd "C-x 1") 'delete-window)
+(global-set-key (kbd "C-x 0") 'delete-other-windows)
 
-;; Window switching. (C-x o goes to the next window)
 (global-set-key (kbd "C-x f") (lambda ()
                 (interactive)
-                (other-window -1))) ;; back one
-(global-set-key (kbd "C-x b") (lambda ()
+                (other-window -1)))  ;; back one
+(global-set-key (kbd "C-<tab>") (lambda ()
                   (interactive)
                   (other-window 1))) ;; forward one
 ;;(global-set-key "\C-xs" 'shell)
