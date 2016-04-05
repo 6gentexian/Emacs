@@ -38,6 +38,8 @@
     ac-ispell
     ac-js2
     web-mode
+    flyspell-popup
+    flycheck
     )
   "List of packages installed at launch."
   )
@@ -65,8 +67,6 @@
     ;; deferred
     ;; epc
     ;; f
-    ;; flycheck
-    ;; flyspell-popup
     ;; julia-mode
     ;; math-symbol-lists
     ;; rw-ispell

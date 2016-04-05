@@ -24,14 +24,12 @@
 (require 'autopair)
 (autopair-global-mode)
 
-
-
 ;; Auctex
 ;; Invoke the AUCTeX package (LaTeX support)
 (require 'tex-site)
 
 ;; To compile documents to PDF (via PDFLaTeX) by default add the following to your ~/.emacs.
-(setq TeX-PDF-mode t)
+;;(setq TeX-PDF-mode t)
 
 ;; If it doesn’t work, try
 ;; (require 'tex)
