@@ -1,9 +1,11 @@
-# File that appears obsolete
-
-
-# Ignore all .tmp files
+# Ignore all non-system files
+saveplace*
+*.el~
 *~
+ac-comp*
 
-
-# Ignore everything in DEV/
+# Ignore everything in sub-folders/
+auto-save-list/
+elpa/
+emacs-backup/
 DEV/
