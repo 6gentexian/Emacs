@@ -1,5 +1,5 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  ~/.emacs.d/my-packages.el
+;;  ~/.emacs.d/lisp/my-packages.el
 ;;
 ;;
 ;;  TODOs:  Get rest of packages installed as soon as we figger out how
@@ -7,8 +7,8 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Needed to read packages from local package repo, 'elpa':
-;;(add-to-list 'load-path "~/.emacs.d/elpa")
-(add-to-list 'load-path "~/DEV/EMACS/elpa/")
+(add-to-list 'load-path "~/.emacs.d/elpa")
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'package)

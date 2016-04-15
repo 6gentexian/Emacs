@@ -3,10 +3,10 @@
 ;;
 ;;
 ;;  DEPENDENCIES:
-;;    ~/.emacs.d/custom.el
-;;    ~/.emacs.d/my-packages.el
-;;    ~/.emacs.d/my-modes.el
-;;    ~/.emacs.d/my-modeline.el
+;;    ~/.emacs.d/lisp/custom.el
+;;    ~/.emacs.d/lisp/my-packages.el
+;;    ~/.emacs.d/lisp/my-modes.el
+;;    ~/.emacs.d/lisp/my-modeline.el
 ;;
 ;;
 ;;  USE:  Place .emacs in your home directory (~/)
@@ -21,8 +21,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Define LoadPath -- get things setup to download and install packages
-;;(add-to-list 'load-path "~/emacs.d")
-(add-to-list 'load-path "~/DEV/EMACS")
+(add-to-list 'load-path "~/.emacs.d/lisp")
+
+
 ;; Load req'd packages, package repositories; i.e. load important stuff first
 (require 'my-packages)
 
@@ -30,7 +31,7 @@
 (require 'my-modes)
 
 ;; All user configs not related to anything else here...
-(setf custom-file "~/.emacs.d/custom.el")
+(setf custom-file "~/.emacs.d/lisp/custom.el")
 (load custom-file)
 
 ;; mode line customization takes place last
