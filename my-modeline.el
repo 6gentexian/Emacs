@@ -1,5 +1,5 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ~/.emacs.d/my-modeline.el
+;; ~/.emacs.d/lisp/my-modeline.el
 ;;
 ;;
 ;; Based off the brilliant script:
@@ -126,9 +126,7 @@
 (set-face-attribute 'mode-line-process-face nil
             :inherit 'mode-line-face
             :foreground "#eeeeec") ;; light light gray
-;; (set-face-attribute 'mode-line-process-face nil
-;;                  :inherit 'mode-line-face
-;;                  :foreground "#718c00") ;; OD greenish
+
 (set-face-attribute 'mode-line-80col-face nil  ;; column 80 warning
             :inherit 'mode-line-position-face
             :foreground "black" :background "yellow")  ;;"#eab700")

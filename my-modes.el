@@ -7,19 +7,10 @@
 ;; Is it me, or are some of these settings chronically wonky??
 ;;
 ;;  TODO: get abrev-mode working for auctex
-;;        try and set custom tabs n text-mode
 ;;        add custom comment symbol for each kind of mode type
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-;; sample files/type
-;; /home/edward/TMP/test.ext
-;; /home/edward/TMP/nscpmsg.txt
-;; /home/edward/TMP/xsel.log
-;; /home/edward/TMP/dataTest.py
-;; /home/edward/TMP/cv-1-short.html
-;; /home/edward/TMP/CV_Master.tex
-;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  Set autopair and auto-comlpete globally
 (require 'autopair)
@@ -29,23 +20,6 @@
 ;; Invoke the AUCTeX package (LaTeX support)
 (require 'tex-site)
 
-;; To compile documents to PDF (via PDFLaTeX) by default add the following to your ~/.emacs.
-;;(setq TeX-PDF-mode t)
-
-;; If it doesn’t work, try
-;; (require 'tex)
-;; (TeX-global-PDF-mode t)
-
-;; By default, AUCTeX shares its abbreviations with the major mode text-mode.
-;; This means that abbreviations saved with C-x a l (add-mode-abbrev) are
-;; saved in the table text-mode-abbrev-table and become available in all buffers
-;; using text-mode. This may not be the expected behavior.
-;; Here is how to define abbreviations that work in auctex modes only,
-;; without interfering with the standard text-mode. In the InitFile, put:
-;; (define-abbrev-table 'TeX-mode-abbrev-table (make-abbrev-table))
-;; (add-hook 'TeX-mode-hook (lambda ()
-;;    (setq abbrev-mode t)
-;;    (setq local-abbrev-table TeX-mode-abbrev-table)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
@@ -107,8 +81,7 @@
    log-mode-hook
    python-mode-hook
    emacs-lisp-mode-hook))
-;   org-mode-hook))  // no effect
-;  // R-mode defaults to 2 - can't seem to change it...?
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
@@ -131,6 +104,7 @@
 (add-to-list 'auto-mode-alist '("\\.wsgi$"  . python-mode))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; JavaScript Mode
 ;;
@@ -141,6 +115,7 @@
 
 (add-hook 'js-mode-hook 'js-custom)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 
 ;; Red Warnings in the top comment section
 ;; Various keywords (in comments) are now flagged in a Red Error font:
@@ -208,19 +183,12 @@
   )
 (global-set-key (kbd "M-<f8>") 'flyspell-check-next-highlighted-word)
 
-;; (add-hook 'markdown-mode-hook 'flyspell-mode)
-;; (add-hook 'latex-mode-hook 'flyspell-mode)
+
 (add-hook 'web-mode-hook 'flyspell-mode)
-;; (add-hook 'emacs-lisp-mode-hook 'flyspell-mode -1)
-;; (add-hook 'sh-mode-hook 'flyspell-mode)
 
 (dolist (hook '(change-log-mode-hook log-edit-mode-hook))
   (add-hook hook (lambda () (flyspell-mode -1))))
 
-;; (defun TeX-input-method () (set-input-method 'TeX))
-;;   (add-hook 'org-mode-hook 'TeX-input-method)
-;;   (add-hook 'markdown-mode-hook 'TeX-input-method)
-;;   (add-hook 'latex-mode-hook 'TeX-input-method)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 

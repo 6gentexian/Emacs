@@ -1,13 +1,14 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  ~/.emacs.d/my-packages.el
+;;  ~/.emacs.d/lisp/my-packages.el
 ;;
 ;;
 ;;  TODOs:  Get rest of packages installed as soon as we figger out how
-;;          to get spell checker loading at launch, as per mode
+;;          to get spell checker loading at launch, only for certain modes
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Needed to read packages from local package repo, 'elpa':   ~/.emacs.d/elpa
-(add-to-list 'load-path "~/DEV/EMACS/elpa/")
+;; Needed to read packages from local package repo, 'elpa':
+(add-to-list 'load-path "~/.emacs.d/elpa")
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'package)
