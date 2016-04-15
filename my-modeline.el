@@ -1,5 +1,5 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ~/.emacs.d/my-modeline.el
+;; ~/.emacs.d/lisp/my-modeline.el
 ;;
 ;;
 ;; Based off the brilliant script:
